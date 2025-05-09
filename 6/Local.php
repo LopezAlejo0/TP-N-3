@@ -185,10 +185,17 @@
             }
 
             // Contar los productos vendidos
+            $contadorProductos = [];
             foreach ($colVentasAnio as $venta) {
                 $colProductos = $venta -> getColeccionProductos ();
                 foreach ($colProductos as $producto) {
-                    
+                    $codigo = $producto -> getCodBarra ();
+                    $contadorProductos [$codigo] =
+                    [
+                        'Producto' => $producto,
+                        'Cantidad' => 0
+                    ];
+                    $contadorProductos[$codigo]['Cantidad'] += 1;
                 }
             }
         }
