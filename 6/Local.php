@@ -205,7 +205,7 @@
             usort ($contadorProductos, 'comparacionElementos');
 
             // Obtener los n productos más vendidos.
-            $productosMasVendidos = array_slice ($contadorProductos, 0, $n);
+            $productosMasVendidos = array_slice ($contadorProductos, 0, $n - 1);
             
             return $productosMasVendidos;
         }
