@@ -170,7 +170,10 @@
         }
 
         /**
-         * 
+         * Recibe un año y un valor n para retornar los n productos más vendidos de ese año
+         * @param int $anio
+         * @param int $n
+         * @return array
          */
         public function informarProductosMasVendidos ($anio, $n) {
             // Filtar las ventas por año
@@ -193,11 +196,23 @@
                     $contadorProductos [$codigo] =
                     [
                         'Producto' => $producto,
-                        'Cantidad' => 0
+                        'Cantidad' => ($contadorProductos[$codigo]['Cantidad'] ?? 0) + 1
                     ];
-                    $contadorProductos[$codigo]['Cantidad'] += 1;
                 }
             }
+
+            // Productos ordenados por cantidad descendente
+            usort ($contadorProductos, 'comparacionElementos');
+
+            // Obtener los n productos más vendidos.
+            $productosMasVendidos = array_slice ($contadorProductos, 0, $n);
+            
+            return $productosMasVendidos;
+        }
+
+        // Función utilizado en informarProductosMasVendidos para ordenar productos por cantidad vendida (de menor a mayor)
+        private function comparacionElementos ($a, $b) {
+            return $b['Cantidad'] - $a['Cantidad'];
         }
     }
 ?>
