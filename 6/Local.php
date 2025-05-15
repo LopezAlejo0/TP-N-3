@@ -214,5 +214,11 @@
         private function comparacionElementos ($a, $b) {
             return $b['Cantidad'] - $a['Cantidad'];
         }
+
+        /**
+         * 
+         */
+        public function promedioVentasImportados () {          
+        }
     }
 ?>
